@@ -13,8 +13,17 @@ void Bot::move(const float speed)
 	
 }
 
+void Bot::checkPosition()
+{
+	if (mShape.getGlobalBounds().top < 0.f)
+		mShape.setPosition(mShape.getGlobalBounds().left, 0.f);
+	else if (mShape.getGlobalBounds().top + mShape.getGlobalBounds().height > 500.f)
+		mShape.setPosition(mShape.getGlobalBounds().left, 500.f - mShape.getGlobalBounds().height);
+}
+
 void Bot::update()
 {
+	checkPosition();
 	move(mSpeed);
 }
 

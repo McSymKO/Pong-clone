@@ -1,19 +1,19 @@
 #include "pch.h"
 #include "Player.h"
 
-Player::Player(float speed)
+Player::Player(const float speed)
 	: mSpeed(speed)
 {
 	mShape.setSize(sf::Vector2f(15.f, 100.f));
 	mShape.setPosition(760.f, 210.f);
 }
 
-void Player::move(const float speed)
+void Player::move()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-		mShape.move(0.f, -1.f * speed);
+		mShape.move(0.f, -1.f * mSpeed);
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-		mShape.move(0.f, 1.f * speed);
+		mShape.move(0.f, 1.f * mSpeed);
 }
 
 void Player::checkPosition()
@@ -26,7 +26,7 @@ void Player::checkPosition()
 
 void Player::update()
 {
-	move(mSpeed);
+	move();
 	checkPosition();
 }
 

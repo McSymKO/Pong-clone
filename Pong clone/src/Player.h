@@ -3,9 +3,9 @@
 class Player
 {
 public:
-	Player(float speed);
+	Player(const float speed);
 
-	void move(const float speed);
+	void move();
 	void checkPosition();
 
 	void update();

@@ -3,6 +3,7 @@
 #include "GameState.h"
 #include "Player.h"
 #include "Bot.h"
+#include "Ball.h"
 
 class PauseState : public GameState
 {
@@ -14,6 +15,7 @@ public:
 private:
 	Player mPlayer;
 	Bot mBot;
+	Ball mBall;
 	sf::RectangleShape mLine;
 
 	//GUI
