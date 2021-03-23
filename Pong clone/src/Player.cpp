@@ -8,6 +8,16 @@ Player::Player(const float speed)
 	mShape.setPosition(760.f, 210.f);
 }
 
+const sf::Vector2f& Player::getPosition() const
+{
+	return mShape.getPosition();
+}
+
+const sf::FloatRect Player::getBounds() const
+{
+	return mShape.getGlobalBounds();
+}
+
 void Player::move()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))

@@ -13,6 +13,11 @@ const sf::Vector2f& Ball::getPosition() const
 	return mShape.getPosition();
 }
 
+const sf::FloatRect Ball::getBounds() const
+{
+	return mShape.getGlobalBounds();
+}
+
 void Ball::setMovement(Directions::DIRECTION_MOVEMENT movement)
 {
 	mDirection = movement;

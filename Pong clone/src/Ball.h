@@ -21,6 +21,7 @@ public:
 
 	//Getters / Setters
 	const sf::Vector2f& getPosition() const;
+	const sf::FloatRect getBounds() const;
 	void setMovement(Directions::DIRECTION_MOVEMENT movement);
 	
 	void move();

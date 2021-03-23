@@ -8,6 +8,11 @@ Bot::Bot(const float speed)
 	mShape.setPosition(25.f, 210.f);
 }
 
+const sf::FloatRect Bot::getBounds() const
+{
+	return mShape.getGlobalBounds();
+}
+
 void Bot::move(const float speed)
 {
 	
