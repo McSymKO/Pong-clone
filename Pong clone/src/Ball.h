@@ -19,6 +19,8 @@ class Ball
 public:
 	Ball(const float speed);
 
+	void setBall();
+
 	//Getters / Setters
 	const sf::Vector2f& getPosition() const;
 	const sf::FloatRect getBounds() const;

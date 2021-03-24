@@ -19,9 +19,7 @@ private:
 	sf::RectangleShape mLine;
 
 	//GUI
-	sf::Text pauseText;
 	sf::Text scoreLeft;
 	sf::Text scoreRight;
-	sf::Font mFont;
 };
 

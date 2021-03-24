@@ -5,6 +5,11 @@ Player::Player(const float speed)
 	: mSpeed(speed)
 {
 	mShape.setSize(sf::Vector2f(15.f, 100.f));
+	setPlayer();
+}
+
+void Player::setPlayer()
+{
 	mShape.setPosition(760.f, 210.f);
 }
 
