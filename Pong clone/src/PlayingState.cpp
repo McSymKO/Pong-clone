@@ -24,21 +24,39 @@ void PlayingState::updateBallMovement()
 {
 	if (mBall.getBounds().intersects(mPlayer.getBounds()))
 	{	
-		if (mBall.getPosition().y < mPlayer.getPosition().y + 25.f)
+		if (mBall.getPosition().y < mPlayer.getPosition().y + 30.f)
 			mDirection = Directions::DIRECTION_MOVEMENT::UP_LEFT;
-		else if (mBall.getPosition().y > mPlayer.getPosition().y + 25.f && mBall.getPosition().y < mPlayer.getPosition().y + 75.f)
+		else if (mBall.getPosition().y > mPlayer.getPosition().y + 30.f && mBall.getPosition().y < mPlayer.getPosition().y + 70.f)
 			mDirection = Directions::DIRECTION_MOVEMENT::LEFT;
-		else if (mBall.getPosition().y > mPlayer.getPosition().y + 75.f && mBall.getPosition().y < mPlayer.getPosition().y + 100.f)
+		else if (mBall.getPosition().y > mPlayer.getPosition().y + 70.f && mBall.getPosition().y < mPlayer.getPosition().y + 100.f)
 			mDirection = Directions::DIRECTION_MOVEMENT::DOWN_LEFT;
 	}
 	else if (mBall.getBounds().intersects(mBot.getBounds()))
 	{
-		if (mBall.getPosition().y < mBot.getPosition().y + 25.f)
+		if (mBall.getPosition().y < mBot.getPosition().y + 30.f)
 			mDirection = Directions::DIRECTION_MOVEMENT::UP_RIGHT;
-		else if (mBall.getPosition().y > mBot.getPosition().y + 25.f && mBall.getPosition().y < mBot.getPosition().y + 75.f)
+		else if (mBall.getPosition().y > mBot.getPosition().y + 30.f && mBall.getPosition().y < mBot.getPosition().y + 70.f)
 			mDirection = Directions::DIRECTION_MOVEMENT::RIGHT;
-		else if (mBall.getPosition().y > mBot.getPosition().y + 75.f && mBall.getPosition().y < mBot.getPosition().y + 100.f)
+		else if (mBall.getPosition().y > mBot.getPosition().y + 70.f && mBall.getPosition().y < mBot.getPosition().y + 100.f)
 			mDirection = Directions::DIRECTION_MOVEMENT::DOWN_RIGHT;
+	}
+
+	//Ball hits top side
+	else if (mBall.getBounds().top < 0.f)
+	{
+		if (mDirection == Directions::DIRECTION_MOVEMENT::UP_RIGHT)
+			mDirection = Directions::DIRECTION_MOVEMENT::DOWN_RIGHT;
+		else if (mDirection == Directions::DIRECTION_MOVEMENT::UP_LEFT)
+			mDirection = Directions::DIRECTION_MOVEMENT::DOWN_LEFT;
+	}
+
+	//Ball hits bottom side
+	else if (mBall.getBounds().top + mBall.getBounds().height > 500.f)
+	{
+		if (mDirection == Directions::DIRECTION_MOVEMENT::DOWN_RIGHT)
+			mDirection = Directions::DIRECTION_MOVEMENT::UP_RIGHT;
+		else if (mDirection == Directions::DIRECTION_MOVEMENT::DOWN_LEFT)
+			mDirection = Directions::DIRECTION_MOVEMENT::UP_LEFT;
 	}
 
 	//Ball hits right side
