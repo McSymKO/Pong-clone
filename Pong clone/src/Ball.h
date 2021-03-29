@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Directions
+namespace Ball_Directions
 {
 	enum class DIRECTION_MOVEMENT
 	{
@@ -20,11 +20,12 @@ public:
 	Ball(const float speed);
 
 	void setBall();
+	const Ball_Directions::DIRECTION_MOVEMENT& getDirection() const;
 
 	//Getters / Setters
 	const sf::Vector2f& getPosition() const;
 	const sf::FloatRect getBounds() const;
-	void setMovement(Directions::DIRECTION_MOVEMENT movement);
+	void setMovement(Ball_Directions::DIRECTION_MOVEMENT movement);
 	
 	void move();
 
@@ -34,6 +35,6 @@ public:
 private:
 	sf::RectangleShape mShape;
 	float mSpeed;
-	Directions::DIRECTION_MOVEMENT mDirection;
+	Ball_Directions::DIRECTION_MOVEMENT mDirection;
 };
 

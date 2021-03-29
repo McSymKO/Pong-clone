@@ -2,7 +2,7 @@
 #include "Bot.h"
 
 Bot::Bot(const float speed)
-	: mSpeed(speed)
+	: mSpeed(speed), mDir(Bot_Directions::Directions::IDLE)
 {
 	mShape.setSize(sf::Vector2f(15.f, 100.f));
 	setBot();
@@ -23,9 +23,19 @@ const sf::Vector2f& Bot::getPosition() const
 	return mShape.getPosition();
 }
 
-void Bot::move(const float speed)
+void Bot::setMovement(Bot_Directions::Directions direction)
 {
-	
+	mDir = direction;
+}
+
+void Bot::move()
+{
+	if (mDir == Bot_Directions::Directions::IDLE)
+		mShape.move(0.f, 0.f);
+	else if (mDir == Bot_Directions::Directions::UP)
+		mShape.move(0.f, -1.f * mSpeed);
+	else if (mDir == Bot_Directions::Directions::DOWN)
+		mShape.move(0.f, 1.f * mSpeed);
 }
 
 void Bot::checkPosition()
@@ -39,7 +49,7 @@ void Bot::checkPosition()
 void Bot::update()
 {
 	checkPosition();
-	move(mSpeed);
+	move();
 }
 
 void Bot::render(sf::RenderTarget& target)

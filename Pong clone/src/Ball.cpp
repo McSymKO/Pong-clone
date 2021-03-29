@@ -2,7 +2,7 @@
 #include "Ball.h"
 
 Ball::Ball(const float speed)
-	:mSpeed(speed), mDirection(Directions::DIRECTION_MOVEMENT::IDLE)
+	:mSpeed(speed), mDirection(Ball_Directions::DIRECTION_MOVEMENT::IDLE)
 {
 	mShape.setSize(sf::Vector2f(15.f, 15.f));
 	setBall();
@@ -11,6 +11,11 @@ Ball::Ball(const float speed)
 void Ball::setBall()
 {
 	mShape.setPosition(sf::Vector2f(386.f, 240.f));
+}
+
+const Ball_Directions::DIRECTION_MOVEMENT& Ball::getDirection() const
+{
+	return mDirection;
 }
 
 const sf::Vector2f& Ball::getPosition() const
@@ -23,24 +28,24 @@ const sf::FloatRect Ball::getBounds() const
 	return mShape.getGlobalBounds();
 }
 
-void Ball::setMovement(Directions::DIRECTION_MOVEMENT movement)
+void Ball::setMovement(Ball_Directions::DIRECTION_MOVEMENT movement)
 {
 	mDirection = movement;
 }
 
 void Ball::move()
 {
-	if (mDirection == Directions::DIRECTION_MOVEMENT::RIGHT)
+	if (mDirection == Ball_Directions::DIRECTION_MOVEMENT::RIGHT)
 		mShape.move(0.1f * mSpeed, 0.f);
-	else if (mDirection == Directions::DIRECTION_MOVEMENT::UP_RIGHT)
+	else if (mDirection == Ball_Directions::DIRECTION_MOVEMENT::UP_RIGHT)
 		mShape.move(0.1f * mSpeed, -0.1f * mSpeed);
-	else if (mDirection == Directions::DIRECTION_MOVEMENT::DOWN_RIGHT)
+	else if (mDirection == Ball_Directions::DIRECTION_MOVEMENT::DOWN_RIGHT)
 		mShape.move(0.1f * mSpeed, 0.1f * mSpeed);
-	else if (mDirection == Directions::DIRECTION_MOVEMENT::LEFT)
+	else if (mDirection == Ball_Directions::DIRECTION_MOVEMENT::LEFT)
 		mShape.move(-0.1f * mSpeed, 0.f);
-	else if (mDirection == Directions::DIRECTION_MOVEMENT::UP_LEFT)
+	else if (mDirection == Ball_Directions::DIRECTION_MOVEMENT::UP_LEFT)
 		mShape.move(-0.1f * mSpeed, -0.1f * mSpeed);
-	else if (mDirection == Directions::DIRECTION_MOVEMENT::DOWN_LEFT)
+	else if (mDirection == Ball_Directions::DIRECTION_MOVEMENT::DOWN_LEFT)
 		mShape.move(-0.1f * mSpeed, 0.1f * mSpeed);
 }
 

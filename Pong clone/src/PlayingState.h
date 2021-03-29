@@ -11,15 +11,20 @@ class PlayingState : public GameState
 public:
 	PlayingState();
 
-	void reset();
+	void resetPositions();
+
+	void resetBotPosition();
 
 	void updateBallMovement();
+	void updateBotMovement();
 	void update();
 	void render(sf::RenderTarget& target);
 
 private:
 	StateManager gameStates;
 	bool pause;
+	bool ballReflected;
+	bool resetBot;
 
 	//Game's elements
 	Player mPlayer;
@@ -27,7 +32,7 @@ private:
 	Ball mBall;
 	sf::RectangleShape mLine;
 
-	Directions::DIRECTION_MOVEMENT mDirection;
+	Ball_Directions::DIRECTION_MOVEMENT mDirection;
 
 	//GUI
 	sf::Text scoreLeft;

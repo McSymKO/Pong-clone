@@ -1,17 +1,28 @@
 #pragma once
 
+namespace Bot_Directions
+{
+	enum class Directions
+	{
+		IDLE,
+		UP,
+		DOWN
+	};
+}
+
 class Bot
 {
 public:
+	//Con / des
 	Bot(const float speed);
 
 	void setBot();
 
-	//Con / des
 	const sf::FloatRect getBounds() const;
 	const sf::Vector2f& getPosition() const;
+	void setMovement(Bot_Directions::Directions direction);
 
-	void move(const float speed);
+	void move();
 	void checkPosition();
 
 	void update();
@@ -20,5 +31,6 @@ public:
 private:
 	sf::RectangleShape mShape;
 	float mSpeed;
+	Bot_Directions::Directions mDir;
 };
 
