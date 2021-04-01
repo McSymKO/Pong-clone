@@ -13,6 +13,11 @@ void Bot::setBot()
 	mShape.setPosition(25.f, 210.f);
 }
 
+void Bot::scoreBotPoint()
+{
+	++mPoints;
+}
+
 const sf::FloatRect Bot::getBounds() const
 {
 	return mShape.getGlobalBounds();
@@ -21,6 +26,11 @@ const sf::FloatRect Bot::getBounds() const
 const sf::Vector2f& Bot::getPosition() const
 {
 	return mShape.getPosition();
+}
+
+const unsigned& Bot::getBotPoints() const
+{
+	return mPoints;
 }
 
 void Bot::setMovement(Bot_Directions::Directions direction)

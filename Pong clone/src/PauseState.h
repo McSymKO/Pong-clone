@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameState.h"
+#include "PlayingState.h"
 #include "Player.h"
 #include "Bot.h"
 #include "Ball.h"
@@ -19,6 +20,7 @@ private:
 	sf::RectangleShape mLine;
 
 	//GUI
+	sf::Font mFont;
 	sf::Text scoreLeft;
 	sf::Text scoreRight;
 };

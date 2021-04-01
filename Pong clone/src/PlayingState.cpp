@@ -1,17 +1,30 @@
 #include "pch.h"
 #include "PlayingState.h"
-#include "PauseState.h"
+
 
 PlayingState::PlayingState()
 	: mPlayer(5.f), mBot(1.f), mBall(12.f), mDirection(Ball_Directions::DIRECTION_MOVEMENT::IDLE)
-	,pause(true), ballReflected(false), resetBot(false)
+	,pause(false), ballReflected(false), resetBot(false)
 {
+	std::cout << "Playing State launched!" << std::endl;
+
 	mLine.setSize(sf::Vector2f(5.f, 500.f));
 	mLine.setPosition(sf::Vector2f(390.f, 0.f));
 
 	//Ball's starting direction
 	mDirection = Ball_Directions::DIRECTION_MOVEMENT::RIGHT;
-	pause = false;
+
+	//Points
+	std::string pointsLeft = std::to_string(mBot.getBotPoints());
+
+
+	//Initializing texts and font
+	mFont.loadFromFile("Fonts/OpenSans-Regular.ttf");
+
+	scoreLeft.setFont(mFont);
+	scoreLeft.setCharacterSize(44);
+	scoreLeft.setPosition(sf::Vector2f(170.f, 20.f));
+	scoreLeft.setString(pointsLeft);
 }
 
 void PlayingState::resetPositions()
@@ -91,17 +104,20 @@ void PlayingState::updateBallMovement()
 	//Ball hits right side
 	else if (mBall.getPosition().x > 800.f)
 	{
-		gameStates.addState(new PauseState);
-		pause = true;
 		resetPositions();
+		pause = true;
+
+		//+1 Point to bot
+		mBot.scoreBotPoint();
 	}
 
 	//Ball hits left side
 	else if (mBall.getPosition().x < 0.f)
 	{
-		gameStates.addState(new PauseState);
-		pause = true;
 		resetPositions();
+		pause = true;
+
+		//+1 Point to player
 	}
 
 	mBall.setMovement(mDirection);
@@ -116,17 +132,11 @@ void PlayingState::updateBotMovement()
 		if (mBot.getPosition().y > mBall.getPosition().y)
 		{
 			mBot.setMovement(Bot_Directions::Directions::UP);
-
-			if (mBot.getPosition().y <= mBall.getPosition().y)
-				mBot.setMovement(Bot_Directions::Directions::IDLE);
 		}
 		//bot moving DOWN
 		else if (mBot.getPosition().y < mBall.getPosition().y)
 		{
 			mBot.setMovement(Bot_Directions::Directions::DOWN);
-
-			if (mBot.getPosition().y >= mBall.getPosition().y)
-				mBot.setMovement(Bot_Directions::Directions::IDLE);
 		}
 	}
 	//UP LEFT
@@ -146,6 +156,15 @@ void PlayingState::updateBotMovement()
 	}
 }
 
+void PlayingState::updateText()
+{
+	std::stringstream ss;
+
+	ss << mBot.getBotPoints();
+
+	scoreLeft.setString(ss.str());
+}
+
 void PlayingState::update()
 {
 	if (!pause)
@@ -155,6 +174,7 @@ void PlayingState::update()
 		mBot.update();
 		updateBallMovement();
 		mBall.update();
+		updateText();
 	}
 }
 
@@ -164,4 +184,5 @@ void PlayingState::render(sf::RenderTarget& target)
 	mPlayer.render(target);
 	mBot.render(target);
 	mBall.render(target);
+	target.draw(scoreLeft);
 }

@@ -1,10 +1,12 @@
 #pragma once
 
+#include <sstream>
+
 #include "GameState.h"
 #include "StateManager.h"
 #include "Player.h"
-#include "Bot.h"
 #include "Ball.h"
+#include "Bot.h"
 
 class PlayingState : public GameState
 {
@@ -17,6 +19,7 @@ public:
 
 	void updateBallMovement();
 	void updateBotMovement();
+	void updateText();
 	void update();
 	void render(sf::RenderTarget& target);
 
@@ -35,8 +38,8 @@ private:
 	Ball_Directions::DIRECTION_MOVEMENT mDirection;
 
 	//GUI
+	sf::Font mFont;
 	sf::Text scoreLeft;
 	sf::Text scoreRight;
-	sf::Font mFont;
 };
 

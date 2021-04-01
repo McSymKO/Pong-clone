@@ -3,15 +3,8 @@
 
 void StateManager::addState(GameState* state)
 {
-	removeState();
 	states.push(state);
 	states.top()->init();
-}
-
-void StateManager::removeState()
-{
-	if (!states.empty())
-		states.pop();
 }
 
 void StateManager::update()

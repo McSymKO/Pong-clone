@@ -7,7 +7,6 @@ class StateManager
 {
 public:
 	void addState(GameState* state);
-	void removeState();
 
 	void update();
 	void render(sf::RenderTarget& target);

@@ -17,9 +17,11 @@ public:
 	Bot(const float speed);
 
 	void setBot();
+	void scoreBotPoint();
 
 	const sf::FloatRect getBounds() const;
 	const sf::Vector2f& getPosition() const;
+	const unsigned& getBotPoints() const;
 	void setMovement(Bot_Directions::Directions direction);
 
 	void move();
@@ -32,5 +34,6 @@ private:
 	sf::RectangleShape mShape;
 	float mSpeed;
 	Bot_Directions::Directions mDir;
+	unsigned mPoints;
 };
 
