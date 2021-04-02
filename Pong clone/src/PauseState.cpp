@@ -7,16 +7,18 @@ PauseState::PauseState()
 	mLine.setSize(sf::Vector2f(5.f, 500.f));
 	mLine.setPosition(sf::Vector2f(390.f, 0.f));
 
-	//Points
-	std::string pointsLeft = std::to_string(mBot.getBotPoints());
-
 	//Texts and font
 	mFont.loadFromFile("Fonts/OpenSans-Regular.ttf");
 
 	scoreLeft.setFont(mFont);
 	scoreLeft.setCharacterSize(44);
 	scoreLeft.setPosition(sf::Vector2f(170.f, 20.f));
-	scoreLeft.setString(pointsLeft);
+	scoreLeft.setString("0");
+
+	scoreRight.setFont(mFont);
+	scoreRight.setCharacterSize(44);
+	scoreRight.setPosition(sf::Vector2f(610.f, 20.f));
+	scoreRight.setString("0");
 }
 
 void PauseState::update()

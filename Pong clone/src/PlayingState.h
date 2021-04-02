@@ -17,6 +17,9 @@ public:
 
 	void resetBotPosition();
 
+	void resumeGame();
+	void checkWin();
+
 	void updateBallMovement();
 	void updateBotMovement();
 	void updateText();
@@ -26,8 +29,10 @@ public:
 private:
 	StateManager gameStates;
 	bool pause;
+	bool resume;
 	bool ballReflected;
 	bool resetBot;
+	bool gameOver;
 
 	//Game's elements
 	Player mPlayer;
@@ -41,5 +46,10 @@ private:
 	sf::Font mFont;
 	sf::Text scoreLeft;
 	sf::Text scoreRight;
+
+	//Timer
+	sf::Clock mClock;
+	float timer;
+	float delay;
 };
 

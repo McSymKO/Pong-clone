@@ -4,9 +4,8 @@
 
 PlayingState::PlayingState()
 	: mPlayer(5.f), mBot(1.f), mBall(12.f), mDirection(Ball_Directions::DIRECTION_MOVEMENT::IDLE)
-	,pause(false), ballReflected(false), resetBot(false)
+	,pause(false), ballReflected(false), resetBot(false), resume(false), gameOver(false), timer(), delay(4.0f)
 {
-	std::cout << "Playing State launched!" << std::endl;
 
 	mLine.setSize(sf::Vector2f(5.f, 500.f));
 	mLine.setPosition(sf::Vector2f(390.f, 0.f));
@@ -16,7 +15,7 @@ PlayingState::PlayingState()
 
 	//Points
 	std::string pointsLeft = std::to_string(mBot.getBotPoints());
-
+	std::string pointsRight = std::to_string(mPlayer.getPlayerPoints());
 
 	//Initializing texts and font
 	mFont.loadFromFile("Fonts/OpenSans-Regular.ttf");
@@ -25,6 +24,11 @@ PlayingState::PlayingState()
 	scoreLeft.setCharacterSize(44);
 	scoreLeft.setPosition(sf::Vector2f(170.f, 20.f));
 	scoreLeft.setString(pointsLeft);
+
+	scoreRight.setFont(mFont);
+	scoreRight.setCharacterSize(44);
+	scoreRight.setPosition(sf::Vector2f(610.f, 20.f));
+	scoreRight.setString(pointsRight);
 }
 
 void PlayingState::resetPositions()
@@ -46,6 +50,27 @@ void PlayingState::resetBotPosition()
 	{
 		mBot.setMovement(Bot_Directions::Directions::DOWN);
 		resetBot = true;
+	}
+}
+
+void PlayingState::resumeGame()
+{
+	float time = mClock.getElapsedTime().asSeconds();
+	mClock.restart();
+	timer += time;
+	if (timer > delay)
+	{
+		timer = 0;
+		pause = false;
+		resume = false;
+	}
+}
+
+void PlayingState::checkWin()
+{
+	if (mBot.getBotPoints() == 5 || mPlayer.getPlayerPoints() == 5)
+	{
+		gameOver = true;
 	}
 }
 
@@ -106,6 +131,7 @@ void PlayingState::updateBallMovement()
 	{
 		resetPositions();
 		pause = true;
+		resume = true;
 
 		//+1 Point to bot
 		mBot.scoreBotPoint();
@@ -116,6 +142,7 @@ void PlayingState::updateBallMovement()
 	{
 		resetPositions();
 		pause = true;
+		resume = true;
 
 		//+1 Point to player
 	}
@@ -175,6 +202,11 @@ void PlayingState::update()
 		updateBallMovement();
 		mBall.update();
 		updateText();
+		checkWin();
+	}
+	else if (pause && resume)
+	{
+		resumeGame();
 	}
 }
 
@@ -185,4 +217,5 @@ void PlayingState::render(sf::RenderTarget& target)
 	mBot.render(target);
 	mBall.render(target);
 	target.draw(scoreLeft);
+	target.draw(scoreRight);
 }

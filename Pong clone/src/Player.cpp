@@ -2,7 +2,7 @@
 #include "Player.h"
 
 Player::Player(const float speed)
-	: mSpeed(speed)
+	: mSpeed(speed), mPoints()
 {
 	mShape.setSize(sf::Vector2f(15.f, 100.f));
 	setPlayer();
@@ -13,6 +13,11 @@ void Player::setPlayer()
 	mShape.setPosition(760.f, 210.f);
 }
 
+void Player::scorePlayerPoint()
+{
+	++mPoints;
+}
+
 const sf::Vector2f& Player::getPosition() const
 {
 	return mShape.getPosition();
@@ -21,6 +26,11 @@ const sf::Vector2f& Player::getPosition() const
 const sf::FloatRect Player::getBounds() const
 {
 	return mShape.getGlobalBounds();
+}
+
+const unsigned& Player::getPlayerPoints() const
+{
+	return mPoints;
 }
 
 void Player::move()
