@@ -176,6 +176,7 @@
   <ItemGroup>
     <ClInclude Include="src\Ball.h" />
     <ClInclude Include="src\Bot.h" />
+    <ClInclude Include="src\Common.h" />
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\PauseState.h" />
     <ClInclude Include="src\PlayingState.h" />

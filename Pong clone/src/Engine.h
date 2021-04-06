@@ -6,6 +6,7 @@ class Engine
 {
 public:
 	Engine();
+	~Engine();
 
 	bool isGameRunning();
 
@@ -18,6 +19,7 @@ public:
 private:
 	sf::RenderWindow mWindow;
 	bool gameRunning;
+	bool pressedSpace;
 
 	StateManager gameStates;
 };

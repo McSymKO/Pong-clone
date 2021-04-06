@@ -4,9 +4,12 @@
 
 #include "GameState.h"
 #include "StateManager.h"
+#include "Engine.h"
 #include "Player.h"
 #include "Ball.h"
 #include "Bot.h"
+
+bool checkVictory();
 
 class PlayingState : public GameState
 {
@@ -14,9 +17,7 @@ public:
 	PlayingState();
 
 	void resetPositions();
-
 	void resetBotPosition();
-
 	void resumeGame();
 	void checkWin();
 
@@ -28,11 +29,11 @@ public:
 
 private:
 	StateManager gameStates;
+
 	bool pause;
 	bool resume;
 	bool ballReflected;
 	bool resetBot;
-	bool gameOver;
 
 	//Game's elements
 	Player mPlayer;

@@ -10,6 +10,7 @@ class PauseState : public GameState
 {
 public:
 	PauseState();
+
 	void update();
 	void render(sf::RenderTarget& target);
 

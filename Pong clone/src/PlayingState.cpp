@@ -1,10 +1,12 @@
 #include "pch.h"
 #include "PlayingState.h"
+#include "Common.h"
 
+static bool g_victory;
 
 PlayingState::PlayingState()
 	: mPlayer(5.f), mBot(1.f), mBall(12.f), mDirection(Ball_Directions::DIRECTION_MOVEMENT::IDLE)
-	,pause(false), ballReflected(false), resetBot(false), resume(false), gameOver(false), timer(), delay(4.0f)
+	,pause(false), ballReflected(false), resetBot(false), resume(false), timer(), delay(4.0f)
 {
 
 	mLine.setSize(sf::Vector2f(5.f, 500.f));
@@ -70,7 +72,7 @@ void PlayingState::checkWin()
 {
 	if (mBot.getBotPoints() == 5 || mPlayer.getPlayerPoints() == 5)
 	{
-		gameOver = true;
+		g_victory = true;
 	}
 }
 
@@ -218,4 +220,9 @@ void PlayingState::render(sf::RenderTarget& target)
 	mBall.render(target);
 	target.draw(scoreLeft);
 	target.draw(scoreRight);
+}
+
+bool checkVictory()
+{
+	return g_victory;
 }

@@ -4,7 +4,7 @@
 void StateManager::addState(GameState* state)
 {
 	states.push(state);
-	states.top()->init();
+	/*states.top()->init();*/
 }
 
 void StateManager::update()

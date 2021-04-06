@@ -4,7 +4,7 @@
 #include "PauseState.h"
 
  Engine::Engine()
-	: gameRunning(true)
+	: gameRunning(true), pressedSpace(false)
 {
 	mWindow.create(sf::VideoMode(800, 500), "Pong clone", sf::Style::Close);
 	std::cout << "[Engine]: Window created" << "\n";
@@ -12,6 +12,11 @@
 
 	gameStates.addState(new PauseState);
 }
+
+ Engine::~Engine()
+ {
+ std::cout << "[Engine]: Game is Over!" << "\n";
+ }
 
 bool Engine::isGameRunning()
 {
@@ -28,8 +33,11 @@ void Engine::pollEvents()
 			gameRunning = false;
 		else if (ev.type == sf::Event::KeyPressed && ev.key.code == sf::Keyboard::Escape)
 			gameRunning = false;
-		else if (sf::Event::KeyPressed && ev.key.code == sf::Keyboard::Space)
+		else if (sf::Event::KeyPressed && ev.key.code == sf::Keyboard::Space && !pressedSpace)
+		{
 			gameStates.addState(new PlayingState);
+			pressedSpace = true;
+		}
 	}
 }
 
@@ -53,5 +61,8 @@ void Engine::run()
 		pollEvents();
 		update();
 		render();
+
+		if (checkVictory())
+			gameRunning = false;
 	}
 }
