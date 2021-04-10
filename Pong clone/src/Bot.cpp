@@ -8,15 +8,12 @@ Bot::Bot(const float speed)
 	setBot();
 }
 
+//Getters / setters
 void Bot::setBot()
 {
 	mShape.setPosition(25.f, 210.f);
 }
 
-void Bot::scoreBotPoint()
-{
-	++mPoints;
-}
 
 const sf::FloatRect Bot::getBounds() const
 {
@@ -36,6 +33,12 @@ const unsigned& Bot::getBotPoints() const
 void Bot::setMovement(Bot_Directions::Directions direction)
 {
 	mDir = direction;
+}
+
+//Functions
+void Bot::scoreBotPoint()
+{
+	++mPoints;
 }
 
 void Bot::move()

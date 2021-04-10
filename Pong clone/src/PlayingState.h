@@ -9,6 +9,7 @@
 #include "Ball.h"
 #include "Bot.h"
 
+//Global function
 bool checkVictory();
 
 class PlayingState : public GameState
@@ -16,6 +17,7 @@ class PlayingState : public GameState
 public:
 	PlayingState();
 
+	//Functions
 	void resetPositions();
 	void resetBotPosition();
 	void resumeGame();
@@ -41,6 +43,7 @@ private:
 	Ball mBall;
 	sf::RectangleShape mLine;
 
+	//Direction
 	Ball_Directions::DIRECTION_MOVEMENT mDirection;
 
 	//GUI

@@ -8,14 +8,10 @@ Player::Player(const float speed)
 	setPlayer();
 }
 
+//Getters / setters
 void Player::setPlayer()
 {
 	mShape.setPosition(760.f, 210.f);
-}
-
-void Player::scorePlayerPoint()
-{
-	++mPoints;
 }
 
 const sf::Vector2f& Player::getPosition() const
@@ -31,6 +27,12 @@ const sf::FloatRect Player::getBounds() const
 const unsigned& Player::getPlayerPoints() const
 {
 	return mPoints;
+}
+
+//Functions
+void Player::scorePlayerPoint()
+{
+	++mPoints;
 }
 
 void Player::move()

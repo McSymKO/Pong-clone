@@ -2,13 +2,14 @@
 #include "PlayingState.h"
 #include "Common.h"
 
+//Global variable to be accessible for 2 classes
 static bool g_victory;
 
 PlayingState::PlayingState()
 	: mPlayer(5.f), mBot(1.f), mBall(12.f), mDirection(Ball_Directions::DIRECTION_MOVEMENT::IDLE)
 	,pause(false), ballReflected(false), resetBot(false), resume(false), timer(), delay(4.0f)
 {
-
+	//Mid line
 	mLine.setSize(sf::Vector2f(5.f, 500.f));
 	mLine.setPosition(sf::Vector2f(390.f, 0.f));
 
@@ -22,11 +23,13 @@ PlayingState::PlayingState()
 	//Initializing texts and font
 	mFont.loadFromFile("Fonts/OpenSans-Regular.ttf");
 
+	//Bot's score
 	scoreLeft.setFont(mFont);
 	scoreLeft.setCharacterSize(44);
 	scoreLeft.setPosition(sf::Vector2f(170.f, 20.f));
 	scoreLeft.setString(pointsLeft);
 
+	//Player's score
 	scoreRight.setFont(mFont);
 	scoreRight.setCharacterSize(44);
 	scoreRight.setPosition(sf::Vector2f(610.f, 20.f));
@@ -57,6 +60,7 @@ void PlayingState::resetBotPosition()
 
 void PlayingState::resumeGame()
 {
+	//After goal resume game with delay
 	float time = mClock.getElapsedTime().asSeconds();
 	mClock.restart();
 	timer += time;
@@ -70,6 +74,7 @@ void PlayingState::resumeGame()
 
 void PlayingState::checkWin()
 {
+	//Game over if 5 points
 	if (mBot.getBotPoints() == 5 || mPlayer.getPlayerPoints() == 5)
 	{
 		g_victory = true;
@@ -187,6 +192,7 @@ void PlayingState::updateBotMovement()
 
 void PlayingState::updateText()
 {
+	//Update points
 	std::stringstream ss;
 
 	ss << mBot.getBotPoints();
@@ -222,6 +228,7 @@ void PlayingState::render(sf::RenderTarget& target)
 	target.draw(scoreRight);
 }
 
+//Global function
 bool checkVictory()
 {
 	return g_victory;

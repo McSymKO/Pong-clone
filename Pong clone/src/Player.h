@@ -5,14 +5,15 @@ class Player
 public:
 	Player(const float speed);
 
+	//Getters / setters
 	void setPlayer();
-	void scorePlayerPoint();
 
-	//Getters / Setters
 	const sf::Vector2f& getPosition() const;
 	const sf::FloatRect getBounds() const;
 	const unsigned& getPlayerPoints() const;
 
+	//Functions
+	void scorePlayerPoint();
 	void move();
 	void checkPosition();
 

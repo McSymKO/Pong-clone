@@ -1,5 +1,6 @@
 #pragma once
 
+//Global directions
 namespace Ball_Directions
 {
 	enum class DIRECTION_MOVEMENT
@@ -19,14 +20,15 @@ class Ball
 public:
 	Ball(const float speed);
 
+	//Getters / Setters
 	void setBall();
 	const Ball_Directions::DIRECTION_MOVEMENT& getDirection() const;
 
-	//Getters / Setters
 	const sf::Vector2f& getPosition() const;
 	const sf::FloatRect getBounds() const;
 	void setMovement(Ball_Directions::DIRECTION_MOVEMENT movement);
 	
+	//Functions
 	void move();
 
 	void update();

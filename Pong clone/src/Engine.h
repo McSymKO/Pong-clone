@@ -8,6 +8,7 @@ public:
 	Engine();
 	~Engine();
 
+	//Functions
 	bool isGameRunning();
 
 	void pollEvents();

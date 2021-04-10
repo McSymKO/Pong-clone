@@ -8,6 +8,7 @@ Ball::Ball(const float speed)
 	setBall();
 }
 
+//Getters / Setters
 void Ball::setBall()
 {
 	mShape.setPosition(sf::Vector2f(386.f, 240.f));
@@ -33,6 +34,7 @@ void Ball::setMovement(Ball_Directions::DIRECTION_MOVEMENT movement)
 	mDirection = movement;
 }
 
+//Functions
 void Ball::move()
 {
 	if (mDirection == Ball_Directions::DIRECTION_MOVEMENT::RIGHT)

@@ -15,7 +15,7 @@
 
  Engine::~Engine()
  {
- std::cout << "[Engine]: Game is Over!" << "\n";
+	std::cout << "[Engine]: Game is Over!" << "\n";
  }
 
 bool Engine::isGameRunning()
@@ -62,6 +62,7 @@ void Engine::run()
 		update();
 		render();
 
+		//When someone scores 5 points = Game Over
 		if (checkVictory())
 			gameRunning = false;
 	}
