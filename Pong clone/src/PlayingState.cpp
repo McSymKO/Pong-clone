@@ -4,6 +4,7 @@
 
 //Global variable to be accessible for 2 classes
 static bool g_victory;
+static char g_winner;
 
 PlayingState::PlayingState()
 	: mPlayer(5.f), mBot(1.f), mBall(12.f), mDirection(Ball_Directions::DIRECTION_MOVEMENT::IDLE)
@@ -75,9 +76,15 @@ void PlayingState::resumeGame()
 void PlayingState::checkWin()
 {
 	//Game over if 5 points
-	if (mBot.getBotPoints() == 5 || mPlayer.getPlayerPoints() == 5)
+	if (mBot.getBotPoints() == 5)
 	{
 		g_victory = true;
+		g_winner = 'B';
+	}
+	else if (mPlayer.getPlayerPoints() == 5)
+	{
+		g_victory = true;
+		g_winner = 'P';
 	}
 }
 
@@ -228,8 +235,13 @@ void PlayingState::render(sf::RenderTarget& target)
 	target.draw(scoreRight);
 }
 
-//Global function
+//Global functions
 bool checkVictory()
 {
 	return g_victory;
+}
+
+char getWinner()
+{
+	return g_winner;
 }

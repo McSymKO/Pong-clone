@@ -11,6 +11,7 @@
 
 //Global function
 bool checkVictory();
+char getWinner();
 
 class PlayingState : public GameState
 {
@@ -27,6 +28,7 @@ public:
 	void updateBotMovement();
 	void updateText();
 	void update();
+
 	void render(sf::RenderTarget& target);
 
 private:
