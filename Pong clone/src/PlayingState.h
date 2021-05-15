@@ -13,13 +13,5 @@ public:
 	void render(sf::RenderTarget& target);
 
 private:
-	Player mPlayer;
-	Bot mBot;
-	sf::RectangleShape mLine;
-
-	//GUI
-	sf::Text scoreLeft;
-	sf::Text scoreRight;
-	sf::Font mFont;
 };
 

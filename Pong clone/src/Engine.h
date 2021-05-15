@@ -18,7 +18,5 @@ public:
 private:
 	sf::RenderWindow mWindow;
 	bool gameRunning;
-
-	StateManager gameStates;
 };
 

@@ -9,8 +9,6 @@
 	mWindow.create(sf::VideoMode(800, 500), "Pong clone", sf::Style::Close);
 	std::cout << "[Engine]: Window created" << "\n";
 	mWindow.setFramerateLimit(144);
-
-	gameStates.addState(new PauseState);
 }
 
 bool Engine::isGameRunning()
@@ -28,21 +26,19 @@ void Engine::pollEvents()
 			gameRunning = false;
 		else if (ev.type == sf::Event::KeyPressed && ev.key.code == sf::Keyboard::Escape)
 			gameRunning = false;
-		else if (sf::Event::KeyPressed && ev.key.code == sf::Keyboard::Space)
-			gameStates.addState(new PlayingState);
 	}
 }
 
 void Engine::update()
 {
-	gameStates.update();
+	
 }
 
 void Engine::render()
 {
 	mWindow.clear(sf::Color::Black);
 
-	gameStates.render(mWindow);
+	
 	mWindow.display();
 }
 
