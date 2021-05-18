@@ -17,6 +17,10 @@ void Bot::scoreBotPoint()
 {
 	++mPoints;
 }
+/// <summary>
+/// 
+/// </summary>
+/// <returns></returns>
 
 const sf::FloatRect Bot::getBounds() const
 {
