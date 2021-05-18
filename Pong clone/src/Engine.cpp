@@ -8,7 +8,7 @@
 {
 	mWindow.create(sf::VideoMode(800, 500), "Pong clone", sf::Style::Close);
 	std::cout << "[Engine]: Window created" << "\n";
-	mWindow.setFramerateLimit(144);
+	mWindow.setFramerateLimit(120);
 
 	gameStates.addState(new PauseState);
 
