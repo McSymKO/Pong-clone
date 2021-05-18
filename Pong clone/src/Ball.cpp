@@ -4,7 +4,7 @@
 Ball::Ball(const float speed)
 	:mSpeed(speed), mDirection(Ball_Directions::DIRECTION_MOVEMENT::IDLE)
 {
-	mShape.setSize(sf::Vector2f(15.f, 15.f));
+	mShape.setSize(sf::Vector2f(15.f, 15.2f));
 	setBall();
 }
 
