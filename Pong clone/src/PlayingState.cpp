@@ -32,7 +32,7 @@ PlayingState::PlayingState()
 	scoreRight.setPosition(sf::Vector2f(610.f, 20.f));
 	scoreRight.setString(pointsRight);
 }
-
+//123
 void PlayingState::resetPositions()
 {
 	mBall.setBall();
